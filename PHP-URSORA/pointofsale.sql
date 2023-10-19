@@ -2,8 +2,8 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: Oct 07, 2023 at 11:36 AM
+-- Host: 127.0.0.1
+-- Generation Time: Oct 19, 2023 at 02:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,6 +33,17 @@ CREATE TABLE `ref_menu` (
   `menu_desc` text NOT NULL,
   `price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ref_menu`
+--
+
+INSERT INTO `ref_menu` (`id`, `menu_name`, `menu_desc`, `price`) VALUES
+(0, 'Junester Ursora II', 'Nibba', 0),
+(0, '', '', 0),
+(0, '', '', 0),
+(0, '', '', 0),
+(0, 'Try', 'Nibba', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
