@@ -21,17 +21,21 @@
             </div>
         </div>
     </nav>
-    
+
     <div class="container">
-        <h1>Create Menu</h1>
+        <h1>Manage Menu</h1>
         <form method="POST" action="process.php" onsubmit="return validateForm()">
             <div class="mb-3">
-                <label for="menu_name" class="form-label">Menu Name</label>
+                <label for="menu_name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="menu_name" name="menu_name">
             </div>
             <div class="mb-3">
-                <label for "menu_description" class="form-label">Menu Description</label>
+                <label for="menu_description" class="form-label">Department</label>
                 <input type="text" class="form-control" id="menu_description" name="menu_description">
+            </div>
+            <div class="mb-3">
+                <label for="menu_phone" class="form-label">Phone</label>
+                <input type="tel" class="form-control" id="menu_phone" name="menu_phone" placeholder="(123) 555-2222" pattern="\(\d{3}\) \d{3}-\d{4}">
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary" id="liveAlertBtn">Submit</button>
@@ -41,16 +45,17 @@
 
     <div id="liveAlertPlaceholder"></div>
 
-    <div class="alert alert-danger" role="alert" style="display: none" id="validationAlert">
-        Menu Name and Menu Description cannot be empty.
+    <div class="alert alert-danger mt-3" role="alert" style="display: none" id="validationAlert">
+        Name, Department, and Phone cannot be empty.
     </div>
 
     <script>
         function validateForm() {
             const menuName = document.getElementById('menu_name').value;
             const menuDescription = document.getElementById('menu_description').value;
+            const menuPhone = document.getElementById('menu_phone').value;
 
-            if (menuName.trim() === '' || menuDescription.trim() === '') {
+            if (menuName.trim() === '' || menuDescription.trim() === '' || menuPhone.trim() === '') {
                 document.getElementById('validationAlert').style.display = 'block';
                 return false; // Prevent form submission
             } else {
