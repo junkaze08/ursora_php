@@ -13,28 +13,30 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['menu_name']) && isset($_POST['menu_description'])) {
-        $menu_name = $_POST['menu_name'];
-        $menu_description = $_POST['menu_description'];
+    if (isset($_POST['manage_name']) && isset($_POST['manage_department']) && isset($_POST['manage_phone'])) {
+        $manage_name = $_POST['manage_name'];
+        $manage_department = $_POST['manage_department'];
+        $manage_phone = $_POST['manage_phone'];
 
         // Check if the fields are not empty
-        if (!empty($menu_name) && !empty($menu_description)) {
+        if (!empty($manage_name) && !empty($manage_department) && !empty($manage_phone)) {
             // Example SQL query to insert data into a table
-            $table = "ref_menu"; // Replace with your table name
-            $sql = "INSERT INTO `$table` (`menu_name`, `menu_description`) VALUES ('$menu_name', '$menu_description')";
+            $table = "manage_menu"; // Replace with your table name
+            $sql = "INSERT INTO `$table` (`manage_name`, `manage_department`, `manage_phone`) VALUES ('$manage_name', '$manage_department', '$manage_phone')";
 
             if ($conn->query($sql) === TRUE) {
                 echo "Data inserted successfully";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
+            
         } else {
             echo "Both Menu Name and Menu Description are required.";
-        }  
+        }
     } else {
         echo "Menu Name and Menu Description are required.";
     }
-} 
+}
 
 $conn->close();
 ?>
