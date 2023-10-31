@@ -9,7 +9,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">URSORA POS</a>
+            <a class="navbar-brand" href="ActivityUI.html">URSORA POS</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,6 +42,69 @@
             </div>
         </form>
     </div>
+
+    <div class="container">
+        <div class="text-center">
+            <table class="table mt-4">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            const manage_name = document.getElementById('manage_name').value;
+            const manage_department = document.getElementById('manage_department').value;
+            const manage_phone = document.getElementById('manage_phone').value;
+            const phonePattern = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+            if (manage_name.trim() === '' || manage_department.trim() === '' || manage_phone.trim() && !phonePattern.test(manage_phone)) {
+                document.getElementById('validationAlert').style.display = 'block';
+                return false; // Prevent form submission
+            } else {
+                document.getElementById('validationAlert').style.display = 'none';
+                return true; // Allow form submission
+            } 
+        }
+
+        document.getElementById('liveAlertBtn').addEventListener('click', function () {
+            event.preventDefault();
+            const manageName = document.getElementById('manage_name').value;
+            const manageDepartment = document.getElementById('manage_department').value;
+            const managePhone = document.getElementById('manage_phone').value;
+            const phonePattern = /^\(\d{3}\) \d{3}-\d{4}$/;
+        
+            if (manageName.trim() === '' || manageDepartment.trim() === '' || managePhone.trim() === '') {
+                document.getElementById('validationAlert').style.display = 'block';
+            } else if (!phonePattern.test(managePhone)) {
+                document.getElementById('validationAlert').innerText = 'Invalid Phone Format';
+                document.getElementById('validationAlert').style.display = 'block';
+            } else {
+                document.getElementById('validationAlert').style.display = 'none';
+                // Add data to the table
+                addDataToTable(manageName, manageDepartment, managePhone);
+            }
+        });
+
+        function addDataToTable(name, department, phone) {
+            const tableBody = document.getElementById('dataTableBody');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${name}</td>
+                <td>${department}</td>
+                <td>${phone}</td>
+            `;
+            tableBody.appendChild(newRow);
+        }
+
+    </script>
 
     <div id="liveAlertPlaceholder"></div>
 
